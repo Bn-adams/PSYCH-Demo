@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundCheck;
     public float groundDistance;
+    public float fallMultiplier; 
 
     public float jumpForce = 5f; // adjustable jump force
     private bool isGrounded;
+
     
 
     // Start is called before the first frame update
@@ -33,8 +35,9 @@ public class PlayerController : MonoBehaviour
             GetMovement();
             SetMovement();
             Jump();
-            
+            //FallCheck();
         }
+
     }
     // Update is called once per frame
     void Update()
@@ -73,7 +76,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0); // stop horizontal movement if no input
+            rb.velocity = new Vector3(0, (rb.velocity.y), 0); // stop horizontal movement if no input
         }
     }
     void CheckGrounded()
@@ -81,8 +84,31 @@ public class PlayerController : MonoBehaviour
       
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         //Debug.Log("IsGrounded");
+
     }
 
+    //void FallCheck()
+    //{
+
+    //    if (!isGrounded)
+    //    {
+    //        StartCoroutine(FallChecker());
+           
+
+    //    }
+    //}
+    //IEnumerator FallChecker()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //    // Apply extra gravity when falling
+    //    if (rb.velocity.y < 1.5)
+    //    {
+    //        rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+    //    }
+    //    Debug.Log("isFalling");
+
+        
+    //}
 
 }
 
