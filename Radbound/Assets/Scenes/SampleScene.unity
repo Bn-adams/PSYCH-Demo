@@ -440,7 +440,7 @@ Terrain:
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
-  m_TreeMotionVectorModeOverride: 3
+  m_TreeMotionVectorModeOverride: 0
 --- !u!4 &364143532
 Transform:
   m_ObjectHideFlags: 0
@@ -944,7 +944,7 @@ Transform:
   m_GameObject: {fileID: 1013762262}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 366, y: 15.5, z: 417.2}
+  m_LocalPosition: {x: 366, y: 9.44, z: 417.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1013762268}
-  MS: 10
+  MS: 15
   orientation: {fileID: 827573094}
   groundMask:
     serializedVersion: 2
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1541059571}
   groundDistance: 0.2
   fallMultiplier: 20
-  jumpForce: 100
+  jumpForce: 150
 --- !u!54 &1013762268
 Rigidbody:
   m_ObjectHideFlags: 0
