@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Jump") && isGrounded)
         {
             Debug.Log("IsJumping");
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * (2*jumpForce), ForceMode.Impulse);
         }
     }
     //Apply the Movement in the Correct orientation

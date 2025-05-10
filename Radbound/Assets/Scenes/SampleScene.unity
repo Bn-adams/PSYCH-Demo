@@ -11794,7 +11794,7 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 1541059571}
   groundDistance: 0.2
-  fallMultiplier: 20
+  fallMultiplier: 15
   jumpForce: 150
 --- !u!54 &1013762268
 Rigidbody:
