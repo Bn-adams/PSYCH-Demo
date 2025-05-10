@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody rb;
     public float MS;
+    
     private Vector3 moveDirection;
     public Transform orientation;
 
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
     private void FixedUpdate()
     {
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             CheckGrounded();
             GetMovement();
+            IsRunning();
             SetMovement();
             Jump();
             FallCheck();
@@ -79,6 +82,15 @@ public class PlayerController : MonoBehaviour
         {
             //rb.velocity = new Vector3(0, (rb.velocity.y), 0); // stop horizontal movement if no input
         }
+    }
+    void IsRunning()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            MS = MS * 2;
+        }
+
+        
     }
     void CheckGrounded()
     {
