@@ -19,8 +19,9 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce = 5f; // adjustable jump force
     private bool isGrounded;
+    private bool isFalling;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
             GetMovement();
             SetMovement();
             Jump();
-            //FallCheck();
+            FallCheck();
         }
 
     }
@@ -56,8 +57,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") && isGrounded)
         {
-            Debug.Log("IsJump");
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            Debug.Log("IsJumping");
+            rb.AddForce(Vector3.up * (2*jumpForce), ForceMode.Impulse);
         }
     }
     //Apply the Movement in the Correct orientation
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
         if (HI != 0 || VI != 0)
         {
-            moveDirection = orientation.right * HI + orientation.forward * VI;
+            moveDirection = orientation.right * HI + orientation.forward *VI;
            
             Vector3 moveVelocity = moveDirection * MS;
             moveVelocity.y = rb.velocity.y;
@@ -74,41 +75,41 @@ public class PlayerController : MonoBehaviour
 
            
         }
-        else
+        //else
         {
-            rb.velocity = new Vector3(0, (rb.velocity.y), 0); // stop horizontal movement if no input
+            //rb.velocity = new Vector3(0, (rb.velocity.y), 0); // stop horizontal movement if no input
         }
     }
     void CheckGrounded()
     {
       
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        //Debug.Log("IsGrounded");
-
+        Debug.Log("IsGrounded");
+        isFalling = false;
     }
 
-    //void FallCheck()
-    //{
+    void FallCheck()
+    {
 
-    //    if (!isGrounded)
-    //    {
-    //        StartCoroutine(FallChecker());
-           
+        if (!isGrounded && !isFalling)
+        {
+            StartCoroutine(FallChecker());
 
-    //    }
-    //}
-    //IEnumerator FallChecker()
-    //{
-    //    yield return new WaitForSeconds(1);
-    //    // Apply extra gravity when falling
-    //    if (rb.velocity.y < 1.5)
-    //    {
-    //        rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-    //    }
-    //    Debug.Log("isFalling");
 
-        
-    //}
+        }
+    }
+    IEnumerator FallChecker()
+    {
+        yield return new WaitForSeconds(1);
+        // Apply extra gravity when falling
+        if (rb.velocity.y < 1.5)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+        Debug.Log("isFalling");
+        isFalling = true; 
+
+    }
 
 }
 
