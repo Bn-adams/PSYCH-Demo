@@ -19,7 +19,9 @@ public class PlayerStats : MonoBehaviour
 
     private float attackCost = 5;
 
-    private float walkCost = 0.5f;
+    private float walkCost = 3f;
+
+    private float runCost = 9f;
 
 
     //Health Varibles
@@ -31,16 +33,30 @@ public class PlayerStats : MonoBehaviour
     private float maxThirst = 100;
     private float minThirst = 0;
     private float thristPoints;
+    private float thirstBurn = 0.5f;
 
     //Hunger Varibles
     private float maxHunger = 100;
     private float minHunger = 0;
     private float hungerPoints;
+    private float hungerBurn = 0.25f;
 
     //Cleanliness Varibles
     private float maxCleanliness = 100;
     private float minCleanliness = 0;
     private float cleanlinessPoints;
+    private float inDoorCleanBurn = 0.1f;
+    private float outDoorCleanBurn = 0.3f;
+
+
+    //Heat Varibles
+    private float maxHeat = 100;
+    private float minHeat = 0;
+    private float heatPoints;
+    private float movingHeatGen = 0.6f;
+    private float staticHeatGen = 0.2f;
+    private float outDoorHeatBurn = 1f;
+    private float inDoorHeatBurn = 0.1f;
 
     //Mood Varibles
     private float maxMood = 100;
@@ -57,6 +73,7 @@ public class PlayerStats : MonoBehaviour
     public float StaminaCount { get => staminaCount; set => staminaCount = value; }
     public float AttackCost { get => attackCost; set => attackCost = value; }
     public float WalkCost { get => walkCost; set => walkCost = value; }
+    public float RunCost { get => runCost; set => runCost = value; }
 
     //Health
     public float MaxHealth { get => maxHealth; set => maxHealth = value; } 
@@ -67,20 +84,34 @@ public class PlayerStats : MonoBehaviour
     public float MaxThirst { get => maxThirst; set => maxThirst = value; }
     public float MinThirst { get => minThirst; set => maxThirst = value; }
     public float ThirstPoints { get => thristPoints; set => thristPoints = value; }
+    public float ThirstBurn { get => thirstBurn; set => thirstBurn = value; }
+
 
     //Hunger
     public float MaxHunger {  get => maxHunger; set => maxHunger = value; }
     public float MinHunger { get => minHunger; set => minHunger = value; } 
     public float HungerPoints { get => hungerPoints; set => hungerPoints = value; }
+    public float HungerBurn { get => hungerBurn; set => hungerBurn = value; }
 
     //Cleanliness
     public float MaxCleanliness { get => maxCleanliness; set => maxCleanliness = value; }
     public float MinCleanliness { get => minCleanliness; set => minCleanliness = value; }
     public float CleanlinessPoints { get => cleanlinessPoints; set => cleanlinessPoints = value; }
-  
+    public float InDoorCleanBurn { get => inDoorCleanBurn; set => inDoorCleanBurn = value; }
+    public float OutDoorCleanBurn { get => outDoorCleanBurn; set => outDoorCleanBurn = value; }
+
+    //Heat
+    public float MaxHeat { get => maxHeat ; set => maxHeat = value; }
+    public float MinHeat { get => minHeat ; set => minHeat = value; }
+    public float HeatPoints { get => heatPoints; set => heatPoints = value; }
+    public float MovingHeatGen { get => movingHeatGen; set => movingHeatGen = value; }
+    public float StaticHeatGen { get => staticHeatGen; set => staticHeatGen = value; }
+    public float InDoorHeatBurn { get => inDoorHeatBurn; set => inDoorHeatBurn = value; }
+    public float OutDoorHeatBurn { get => outDoorHeatBurn; set => outDoorHeatBurn = value; }
+
     //Mood
     public float MaxMood {  get => maxMood; set => maxMood = value; }
     public float MinMood { get => minMood; set => minMood = value; }
-    public float ModPoints { get => moodPoints; set => moodPoints = value; }
+    public float MoodPoints { get => moodPoints; set => moodPoints = value; }
     
 }
