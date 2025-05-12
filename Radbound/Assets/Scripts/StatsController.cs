@@ -38,11 +38,11 @@ public class StatsController : MonoBehaviour
         
 
         //sets all the stats to there max count
-        stats.ThirstPoints = stats.MaxThirst;
-        stats.HungerPoints = stats.MaxHunger;
-        stats.CleanlinessPoints = stats.MaxCleanliness;
+        stats.ThirstPoints = 50f;
+        stats.HungerPoints = 50f;
+        stats.CleanlinessPoints = 60f;
         stats.HeatPoints = 20f;
-        stats.TirednessPoints = stats.MaxTiredness;
+        stats.TirednessPoints = 80f;
         stats.MoodPoints = 20f;
 
         Face1.SetActive(false);
@@ -185,7 +185,7 @@ public class StatsController : MonoBehaviour
            
             if (stats.MS > 16f)
             {
-                stats.HeatPoints += (stats.MovingHeatGen * 1.3f) * Time.deltaTime;
+                stats.HeatPoints += (stats.MovingHeatGen * 1.4f) * Time.deltaTime;
             }
             else 
             {
@@ -213,7 +213,7 @@ public class StatsController : MonoBehaviour
 
             if (stats.MS > 16f)
             {
-                stats.HeatPoints += (stats.MovingHeatGen * 1.3f) * Time.deltaTime;
+                stats.HeatPoints += (stats.MovingHeatGen * 1.4f) * Time.deltaTime;
             }
             else
             {
@@ -258,10 +258,15 @@ public class StatsController : MonoBehaviour
         if(moodpercentage <20f)
         {
             HandleFaceState(FaceState.F1);
+
+            //PlayerController.chargeRate = PlayerController.chargeRate * 0.6f;
+        
         }
         else if(moodpercentage < 40f)
         {
             HandleFaceState(FaceState.F2);
+
+            //PlayerController.chargeRate = PlayerController.chargeRate * 0.8f;
         }
         else if (moodpercentage < 60f)
         {
@@ -270,10 +275,14 @@ public class StatsController : MonoBehaviour
         else if (moodpercentage < 60f)
         {
             HandleFaceState(FaceState.F4);
+
+            //PlayerController.chargeRate = PlayerController.chargeRate * 1.2f;
         }
         else 
         {
             HandleFaceState(FaceState.F5);
+
+            //PlayerController.chargeRate = PlayerController.chargeRate * 1.4f;
         }
        
 
