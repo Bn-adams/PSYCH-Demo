@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             Jump();
             FallCheck();
             //Debug.Log(isRecharging);
-            Debug.Log(isOutside);
+            //Debug.Log(isOutside);
         }
 
     }
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("NoInput");
+                //Debug.Log("NoInput");
                 isStatic = true;
                 //rb.velocity = new Vector3(0, (rb.velocity.y), 0); // stop horizontal movement if no input
             }
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
-        Debug.Log("isFalling");
+        //Debug.Log("isFalling");
         isFalling = true; 
 
     }

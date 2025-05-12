@@ -53,15 +53,23 @@ public class PlayerStats : MonoBehaviour
     private float maxHeat = 100;
     private float minHeat = 0;
     private float heatPoints;
-    private float movingHeatGen = 0.6f;
-    private float staticHeatGen = 0.2f;
-    private float outDoorHeatBurn = 1f;
+    private float movingHeatGen = 1f;
+    private float staticHeatGen = 0.1f;
+    private float outDoorHeatBurn = 1.5f;
     private float inDoorHeatBurn = 0.1f;
+
+    //Tiredness Varibles
+    private float maxTired = 100;
+    private float minTired = 0;
+    private float tirednessPoints;
+    private float energyBurn = 0.5f;
 
     //Mood Varibles
     private float maxMood = 100;
     private float minMood = 0;
     private float moodPoints;
+
+   
 
     //Player
     public float MS { get => mS; set => mS = value; }
@@ -108,6 +116,11 @@ public class PlayerStats : MonoBehaviour
     public float StaticHeatGen { get => staticHeatGen; set => staticHeatGen = value; }
     public float InDoorHeatBurn { get => inDoorHeatBurn; set => inDoorHeatBurn = value; }
     public float OutDoorHeatBurn { get => outDoorHeatBurn; set => outDoorHeatBurn = value; }
+
+    public float MaxTiredness { get => maxTired; set => maxTired = value; }
+    public float MinTiredness { get => minTired; set => minTired = value; }
+    public float TirednessPoints { get => tirednessPoints; set => tirednessPoints = value; }
+    public float EnegryBurn { get => energyBurn; set => energyBurn = value; }
 
     //Mood
     public float MaxMood {  get => maxMood; set => maxMood = value; }

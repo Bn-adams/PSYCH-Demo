@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 using UnityEngine.UI;
+using static StatsController;
 
 public class StatsController : MonoBehaviour
 {
@@ -11,12 +13,21 @@ public class StatsController : MonoBehaviour
     public Image HungerBar;
     public Image CleanlinessBar;
     public Image HeatBar;
+    public Image TirednessBar;
     public Image MoodBar;
+
+    //MoodFaces
+    public GameObject Face1;
+    public GameObject Face2;
+    public GameObject Face3;
+    public GameObject Face4;
+    public GameObject Face5;
+
 
     public PlayerController PlayerController;
 
     private PlayerStats stats;
-    private GameObject Player;
+    
 
 
 
@@ -24,16 +35,21 @@ public class StatsController : MonoBehaviour
     void Start()
     {
         stats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        Player = GameObject.Find("Player");
+        
 
         //sets all the stats to there max count
         stats.ThirstPoints = stats.MaxThirst;
         stats.HungerPoints = stats.MaxHunger;
         stats.CleanlinessPoints = stats.MaxCleanliness;
         stats.HeatPoints = 20f;
+        stats.TirednessPoints = stats.MaxTiredness;
         stats.MoodPoints = 20f;
 
-
+        Face1.SetActive(false);
+        Face2.SetActive(false);
+        Face3.SetActive(false);
+        Face4.SetActive(false);
+        Face5.SetActive(false);
 
     }
 
@@ -45,8 +61,10 @@ public class StatsController : MonoBehaviour
         ThirstManager();
         HungerManager();
         CleanlinessManager();
-        HeatManager(); 
+        HeatManager();
+        TirednessManager();
         MoodManager();
+
 
     }
 
@@ -73,7 +91,11 @@ public class StatsController : MonoBehaviour
         if (stats.ThirstPoints < stats.MinThirst) stats.ThirstPoints = stats.MinThirst;
 
         ThirstBar.fillAmount = stats.ThirstPoints / stats.MaxThirst;
-        Debug.Log("Thirst Updated");
+        //Debug.Log("Thirst Updated");
+
+       
+
+
     }
 
     void HungerManager()
@@ -100,14 +122,14 @@ public class StatsController : MonoBehaviour
 
     void CleanlinessManager()
     {
-        if (stats.MS > 16f)
-        {
-            stats.CleanlinessPoints -= (stats.HungerBurn * 1.2f) * Time.deltaTime;
-        }
-        else
-        {
-            stats.CleanlinessPoints -= stats.HungerBurn * Time.deltaTime;
-        }
+        //if (stats.MS > 16f)
+        //{
+        //    stats.CleanlinessPoints -= (stats.HungerBurn * 1.2f) * Time.deltaTime;
+        //}
+        //else
+        //{
+        //    stats.CleanlinessPoints -= stats.HungerBurn * Time.deltaTime;
+        //}
 
         if (PlayerController.isOutside)
         {
@@ -137,6 +159,10 @@ public class StatsController : MonoBehaviour
 
         CleanlinessBar.fillAmount = stats.CleanlinessPoints / stats.MaxCleanliness;
 
+        //Mood
+
+
+
     }
 
     void HeatManager()
@@ -148,11 +174,12 @@ public class StatsController : MonoBehaviour
             if (PlayerController.isStatic)
             {
                 stats.HeatPoints += stats.StaticHeatGen * Time.deltaTime;
+
             }
 
             if (PlayerController.isRecharging)
             {
-                stats.HeatPoints -= (stats.OutDoorHeatBurn * 2f) * Time.deltaTime;
+                stats.HeatPoints -= (stats.OutDoorHeatBurn * 1.5f) * Time.deltaTime;
             }
 
            
@@ -160,9 +187,13 @@ public class StatsController : MonoBehaviour
             {
                 stats.HeatPoints += (stats.MovingHeatGen * 1.3f) * Time.deltaTime;
             }
-            else
+            else 
             {
-                stats.HeatPoints += stats.MovingHeatGen * Time.deltaTime;
+                if (!PlayerController.isStatic)
+                {
+                    stats.HeatPoints += stats.MovingHeatGen * Time.deltaTime;
+                }
+                
             }
 
          
@@ -177,7 +208,7 @@ public class StatsController : MonoBehaviour
            
             if (PlayerController.isRecharging)
             {
-                stats.HeatPoints -= (stats.InDoorHeatBurn * 2f) * Time.deltaTime;
+                stats.HeatPoints -= (stats.InDoorHeatBurn * 1.5f) * Time.deltaTime;
             }
 
             if (stats.MS > 16f)
@@ -193,20 +224,442 @@ public class StatsController : MonoBehaviour
 
         }
 
-       
+        if (stats.HeatPoints < stats.MinHeat) stats.HeatPoints = stats.MinHeat;
 
         HeatBar.fillAmount = stats.HeatPoints / stats.MaxHeat;
 
-        stats.HeatPoints += stats.MovingHeatGen * Time.deltaTime;
+       
+
+    }
+
+    void TirednessManager()
+    {
+        stats.TirednessPoints -= stats.EnegryBurn * Time.deltaTime;
+
+        if (stats.TirednessPoints < stats.MinTiredness) stats.TirednessPoints = stats.MinTiredness;
+
+        TirednessBar.fillAmount = stats.TirednessPoints / stats.MaxTiredness;
 
     }
 
     void MoodManager()
     {
 
+        MoodSetter();
+
+
+
         MoodBar.fillAmount = stats.MoodPoints / stats.MaxMood;
+
+        //Mood Bar Icon states
+
+        float moodpercentage = (stats.MoodPoints / stats.MaxMood) * 100f;
+
+        if(moodpercentage <20f)
+        {
+            HandleFaceState(FaceState.F1);
+        }
+        else if(moodpercentage < 40f)
+        {
+            HandleFaceState(FaceState.F2);
+        }
+        else if (moodpercentage < 60f)
+        {
+            HandleFaceState(FaceState.F3);
+        }
+        else if (moodpercentage < 60f)
+        {
+            HandleFaceState(FaceState.F4);
+        }
+        else 
+        {
+            HandleFaceState(FaceState.F5);
+        }
+       
 
     }
 
+    public enum FaceState
+    {
+        F1,
+        F2,
+        F3,
+        F4,
+        F5
+    }
+    void HandleFaceState(FaceState currentState)
+    {
+        switch(currentState)
+        {
+            case FaceState.F1:
+                Face5.SetActive(true);
+
+                Face1.SetActive(false);
+                Face2.SetActive(false);
+                Face3.SetActive(false);
+                Face4.SetActive(false);
+                
+                break;
+
+            case FaceState.F2:
+                Face4.SetActive(true);
+
+                Face1.SetActive(false);
+                Face2.SetActive(false);
+                Face3.SetActive(false);
+                Face5.SetActive(false);
+
+                break;
+
+            case FaceState.F3:
+                Face3.SetActive(true);
+
+                Face1.SetActive(false);
+                Face2.SetActive(false);
+                Face4.SetActive(false);
+                Face5.SetActive(false);
+
+                break;
+
+            case FaceState.F4:
+                Face2.SetActive(true);
+
+                Face1.SetActive(false);
+                Face3.SetActive(false);
+                Face4.SetActive(false);
+                Face5.SetActive(false);
+
+                break;
+
+            case FaceState.F5:
+                Face1.SetActive(true);
+
+                Face2.SetActive(false);
+                Face3.SetActive(false);
+                Face4.SetActive(false);
+                Face5.SetActive(false);
+
+                break;
+            
+                
+        }
+    }
+
+    void MoodSetter()
+    {
+
+
+        ////Thirst Section
+        ///
+        float thirstpercent = (stats.ThirstPoints / stats.MaxThirst) * 100f;
+
+        if (thirstpercent < 20f)
+        {
+            stats.MoodPoints -= .2f * Time.deltaTime;
+            Debug.Log("Thirst");
+
+        }
+        else if (thirstpercent < 40f)
+        {
+            Debug.Log("Thirst2");
+            stats.MoodPoints -= .1f * Time.deltaTime;
+        }
+        else if (thirstpercent < 60f)
+        {
+            stats.MoodPoints += 1 * Time.deltaTime;
+            Debug.Log("Thirst3");
+        }
+        else if (thirstpercent < 80f)
+        {
+            stats.MoodPoints += .1f * Time.deltaTime;
+            Debug.Log("Thirst4");
+        }
+        else
+        {
+            stats.MoodPoints += .2f * Time.deltaTime;
+            Debug.Log("Thirst5");
+
+        }
+
+        ////Hunger Section
+        ///
+        float hungerpercent = (stats.HungerPoints / stats.MaxHunger) * 100f;
+
+        if (hungerpercent < 20f)
+        {
+            stats.MoodPoints -= .2f * Time.deltaTime;
+        }
+        else if (hungerpercent < 40f)
+        {
+            stats.MoodPoints -= .1f * Time.deltaTime;
+        }
+        else if (hungerpercent < 60f)
+        {
+            stats.MoodPoints += 0.01f * Time.deltaTime;
+        }
+        else if (hungerpercent < 80f)
+        {
+            stats.MoodPoints += .1f * Time.deltaTime;
+        }
+        else 
+        {
+            stats.MoodPoints += .2f * Time.deltaTime;
+        }
+
+        ////Cleanliness Section
+        ///
+        float cleanlinesspercent = (stats.CleanlinessPoints / stats.MaxCleanliness) * 100f;
+
+        if (cleanlinesspercent < 20f)
+        {
+            stats.MoodPoints -= .2f * Time.deltaTime;
+        }
+        else if (cleanlinesspercent < 40f)
+        {
+            stats.MoodPoints -= .1f * Time.deltaTime;
+        }
+        else if (cleanlinesspercent < 60f)
+        {
+            stats.MoodPoints += 0.1f * Time.deltaTime;
+        }
+        else if (cleanlinesspercent < 80f)
+        {
+            stats.MoodPoints += .1f * Time.deltaTime;
+        }
+        else
+        {
+            stats.MoodPoints += .2f * Time.deltaTime;
+        }
+
+
+
+        ////Heat Section
+        ///
+        float heatpercent = (stats.HeatPoints / stats.MaxHeat) * 100f;
+
+        if (heatpercent <20f)
+        {
+            stats.MoodPoints -= .2f * Time.deltaTime;
+        }
+        else if (heatpercent < 20f)
+        {
+            stats.MoodPoints -= .1f * Time.deltaTime;
+        }
+        else if (heatpercent < 20f)
+        {
+            stats.MoodPoints += 0.01f * Time.deltaTime;
+        }
+        else if (heatpercent < 20f)
+        {
+            stats.MoodPoints += .1f * Time.deltaTime;
+        }
+        else
+        {
+            stats.MoodPoints += .02f * Time.deltaTime;
+        }
+
+        ////Tiredness Section
+        ///
+        float tirednesspercent = (stats.TirednessPoints / stats.MaxTiredness) * 100f;
+
+
+        if (tirednesspercent < 20f)
+        {
+            stats.MoodPoints -= .2f * Time.deltaTime;
+        }
+        else if (tirednesspercent < 40f)
+        {
+            stats.MoodPoints -= .1f * Time.deltaTime;
+        }
+        else if (tirednesspercent < 60f)
+        {
+            stats.MoodPoints += 0.01f * Time.deltaTime;
+        }
+        else if (tirednesspercent < 80f)
+        {
+            stats.MoodPoints += .1f * Time.deltaTime;
+        }
+        else
+        {
+            stats.MoodPoints += .2f * Time.deltaTime;
+        }
+
+    }
+    //public enum ThirstState
+    //{
+    //    Th1,
+    //    Th2,
+    //    Th3,
+    //    Th4,
+    //    Th5
+    //}
+    //void ThirstMoodState(ThirstState currentState)
+    //{
+    //    switch (currentState)
+    //    {
+    //        case ThirstState.Th1:
+               
+    //            break;
+
+    //        case ThirstState.Th2:
+               
+    //            break;
+
+    //        case ThirstState.Th3:
+               
+    //            break;
+
+    //        case ThirstState.Th4:
+                
+    //            break;
+
+    //        case ThirstState.Th5:
+                
+    //            break;
+
+
+    //    }
+    //}
+    //public enum HungerState
+    //{
+    //    H1,
+    //    H2,
+    //    H3,
+    //    H4,
+    //    H5
+    //}
+    //void HungerMoodState(HungerState currentState)
+    //{
+    //    switch (currentState)
+    //    {
+    //        case HungerState.H1:
+    //            break;
+
+    //        case HungerState.H2:
+
+    //            break;
+
+    //        case HungerState.H3:
+
+    //            break;
+
+    //        case HungerState.H4:
+
+    //            break;
+
+    //        case HungerState.H5:
+
+    //            break;
+
+
+    //    }
+    //}
+    //public enum CleanlinessState
+    //{
+    //    C1,
+    //    C2,
+    //    C3,
+    //    C4,
+    //    C5
+    //}
+    //void CleanlinessMoodState(CleanlinessState currentState)
+    //{
+    //    switch (currentState)
+    //    {
+    //        case CleanlinessState.C1:
+    //            break;
+
+    //        case CleanlinessState.C2:
+
+    //            break;
+
+    //        case CleanlinessState.C3:
+
+    //            break;
+
+    //        case CleanlinessState.C4:
+
+    //            break;
+
+    //        case CleanlinessState.C5:
+
+    //            break;
+
+
+    //    }
+    //}
+    //public enum HeatState
+    //{
+    //    C1,
+    //    C2,
+    //    C3,
+    //    C4,
+    //    C5
+    //}
+    //void HeatMoodState(HeatState currentState)
+    //{
+    //    switch (currentState)
+    //    {
+    //        case HeatState.C1:
+    //            break;
+
+    //        case HeatState.C2:
+
+    //            break;
+
+    //        case HeatState.C3:
+
+    //            break;
+
+    //        case HeatState.C4:
+
+    //            break;
+
+    //        case HeatState.C5:
+
+    //            break;
+
+
+    //    }
+    //}
+
+    //public enum TirednessState
+    //{
+    //    T1,
+    //    T2,
+    //    T3,
+    //    T4,
+    //    T5
+    //}
+    //void TirednessMoodState(TirednessState currentState)
+    //{
+    //    switch (currentState)
+    //    {
+    //        case TirednessState.T1:
+    //            stats.MoodPoints -= .2f * Time.deltaTime;
+
+    //            break;
+
+    //        case TirednessState.T2:
+    //            stats.MoodPoints -= .1f * Time.deltaTime;
+    //            break;
+
+    //        case TirednessState.T3:
+    //            stats.MoodPoints += .001f * Time.deltaTime;
+    //            break;
+
+    //        case TirednessState.T4:
+    //            stats.MoodPoints += .1f * Time.deltaTime;
+    //            break;
+
+    //        case TirednessState.T5:
+    //            stats.MoodPoints += .2f * Time.deltaTime;
+    //            break;
+
+
+    //    }
+   
+
+    //}
 
 }
