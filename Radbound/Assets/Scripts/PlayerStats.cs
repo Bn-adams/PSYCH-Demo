@@ -33,36 +33,36 @@ public class PlayerStats : MonoBehaviour
     private float maxThirst = 100;
     private float minThirst = 0;
     private float thristPoints;
-    private float thirstBurn = 0.5f;
+    private float thirstBurn = 0.25f;
 
     //Hunger Varibles
     private float maxHunger = 100;
     private float minHunger = 0;
     private float hungerPoints;
-    private float hungerBurn = 0.25f;
+    private float hungerBurn = 0.125f;
 
     //Cleanliness Varibles
     private float maxCleanliness = 100;
     private float minCleanliness = 0;
     private float cleanlinessPoints;
-    private float inDoorCleanBurn = 0.1f;
-    private float outDoorCleanBurn = 0.3f;
+    private float inDoorCleanBurn = 0.01f;
+    private float outDoorCleanBurn = 0.5f;
 
 
     //Heat Varibles
     private float maxHeat = 100;
     private float minHeat = 0;
     private float heatPoints;
-    private float movingHeatGen = 1.3f;
-    private float staticHeatGen = 0.2f;
-    private float outDoorHeatBurn = 1f;
+    private float movingHeatGen = .5f;
+    private float staticHeatGen = 0.00005f;
+    private float outDoorHeatBurn = .5f;
     private float inDoorHeatBurn = 0.1f;
 
     //Tiredness Varibles
     private float maxTired = 100;
     private float minTired = 0;
     private float tirednessPoints;
-    private float energyBurn = 0.05f;
+    private float energyBurn = 0.005f;
 
     //Mood Varibles
     private float maxMood = 100;
