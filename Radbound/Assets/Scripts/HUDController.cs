@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static HUDController instance;
+
+    private void Awake()
     {
-        
+        instance = this; 
     }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] TMP_Text interactionText;
+
+    public void EnableInteractionText(string text)
     {
-        
+        interactionText.text = text + " F";
+        interactionText.gameObject.SetActive(true);
+    }
+
+    public void DisableInteractionText()
+    {
+        interactionText.gameObject.SetActive(false);
     }
 }
+
+

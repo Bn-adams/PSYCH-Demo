@@ -1,15 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
     public float playerReach = 3;
-    Interactable currentInteractable;
+    public Interactable currentInteractable;
 
-    public Transform orientation;
+    PlayerStats stats;
+
+    //Sleep Stuffs
+    public GameObject SleepPanel;
+    public PlayerController playerController;
+    public float sleepCount = 5f;
 
 
+    private void Start()
+    {
+        stats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        SleepPanel.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -58,17 +69,19 @@ public class PlayerInteraction : MonoBehaviour
             DisableCurrentInteractable();
         }
 
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.red);
+        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.red);
     }
 
     void SetNewCurrentInteractable(Interactable newInteractable)
     {
         currentInteractable = newInteractable;
         currentInteractable.EnableOutline();
+        HUDController.instance.EnableInteractionText(currentInteractable.message);
     }
 
     void DisableCurrentInteractable()
     {
+        HUDController.instance.DisableInteractionText();
         if (currentInteractable)
         {
             currentInteractable.DisableOutline();
@@ -76,4 +89,73 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+
+
+
+    public void Sleep()
+    {
+        SleepPanel.SetActive(true);
+        playerController.isMovementAllowed = false;
+
+        StartCoroutine(SleepThroughNight());
+
+
+    }
+    private IEnumerator SleepThroughNight()
+    {
+        yield return new WaitForSeconds(sleepCount);
+        SleepPanel.SetActive(false);
+        playerController.isMovementAllowed = true;
+
+        stats.TirednessPoints = stats.MaxTiredness;
+        stats.CleanlinessPoints += 20f;
+        stats.ThirstPoints -= 20f;
+        stats.HungerPoints -= 30f;
+
+
+    }
+
+
+
+    public void Shower()
+    {
+        if (Input.GetKey(KeyCode.F))
+        {
+            StartCoroutine(Showering());
+            DisableCurrentInteractable();
+        }
+        else
+        {
+            Debug.Log("TooClean");
+        }
+    }
+    private IEnumerator Showering()
+    {
+        yield return new WaitForSeconds(3);
+        if (Input.GetKey(KeyCode.F))
+        {
+            stats.CleanlinessPoints = stats.MaxCleanliness;
+            stats.HungerPoints -= 10f;
+            stats.TirednessPoints -= 10f;
+            HUDController.instance.EnableInteractionText(currentInteractable.message);
+        }
+
+
+
+    }
+
+    public void Eat()
+    {
+
+    }
+
+    public void Drink()
+    {
+
+    }
+
+    public void Rest()
+    {
+
+    }
 }

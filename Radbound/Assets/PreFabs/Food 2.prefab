@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2909070836346028193}
   - component: {fileID: 4628151720187040683}
   - component: {fileID: 2348370071197209880}
+  - component: {fileID: 6739152067720223424}
   m_Layer: 0
   m_Name: Food 2
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,14 +89,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd87aac0228baa4dbf12cc3ab779f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Pick Up Food
+  message: Eat Food
   onInteraction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7460725641348709477}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 6739152067720223424}
+        m_TargetAssemblyTypeName: Interactions, Assembly-CSharp
+        m_MethodName: Eat
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -104,6 +105,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6739152067720223424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460725641348709477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ab3e2aba6b77d4ebb1e1f925acf1a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SleepPanel: {fileID: 0}
+  playerController: {fileID: 0}
+  sleepCount: 5
 --- !u!1 &9130366089593778982
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.02, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2705718265703939343}

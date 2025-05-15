@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour
     public bool isOutside;
     public bool isRecharging;
     public bool isStatic;
-   
-    
-    
+    public bool isMovementAllowed = true;
+
+
     public float chargeRate;
     public Image StamBar;
     private Coroutine recharge;
@@ -112,31 +112,37 @@ public class PlayerController : MonoBehaviour
     //Apply the Movement in the Correct orientation
     void SetMovement()
     {
-        if (stats.StaminaCount > stats.MinStamina)
+        if (isMovementAllowed)
         {
-            if (HI != 0 || VI != 0)
+            if (stats.StaminaCount > stats.MinStamina)
             {
-                isStatic = false;
-                moveDirection = orientation.right * HI + orientation.forward * VI;
+                if (HI != 0 || VI != 0)
+                {
+                    isStatic = false;
+                    moveDirection = orientation.right * HI + orientation.forward * VI;
 
-                Vector3 moveVelocity = moveDirection * stats.MS;
-                moveVelocity.y = rb.velocity.y;
-                rb.velocity = moveVelocity;
+                    Vector3 moveVelocity = moveDirection * stats.MS;
+                    moveVelocity.y = rb.velocity.y;
+                    rb.velocity = moveVelocity;
 
-                //Debug.Log("sending input");
-                StaminaCheck();
+                    //Debug.Log("sending input");
+                    StaminaCheck();
 
-                
+
+                }
+                else
+                {
+                    //Debug.Log("NoInput");
+                    isStatic = true;
+                    //rb.velocity = new Vector3(0, (rb.velocity.y), 0); // stop horizontal movement if no input
+                }
             }
-            else
-            {
-                //Debug.Log("NoInput");
-                isStatic = true;
-                //rb.velocity = new Vector3(0, (rb.velocity.y), 0); // stop horizontal movement if no input
-            }
-
-
         }
+        else
+        {
+            Debug.Log("Movement is Disabled");
+        }
+       
         
     }
     void IsRunning()
