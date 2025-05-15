@@ -80,6 +80,7 @@ public class StatsController : MonoBehaviour
     void HealthManager()
     {
         if(stats.HealthPoints < stats.MinHealth) stats.HealthPoints = stats.MinHealth;
+        if(stats.HealthPoints > stats.MaxHealth) stats.MaxHealth = stats.HealthPoints;  
 
         HealthBar.fillAmount = stats.HealthPoints / stats.MaxHealth;
     }
@@ -98,6 +99,7 @@ public class StatsController : MonoBehaviour
         }
 
         if (stats.ThirstPoints < stats.MinThirst) stats.ThirstPoints = stats.MinThirst;
+        if(stats.ThirstPoints > stats.MaxThirst) stats.ThirstPoints = stats.MaxThirst;
 
         ThirstBar.fillAmount = stats.ThirstPoints / stats.MaxThirst;
         //Debug.Log("Thirst Updated");
@@ -124,6 +126,7 @@ public class StatsController : MonoBehaviour
         }
 
         if (stats.HungerPoints < stats.MinHunger) stats.HungerPoints = stats.MinHunger;
+        if(stats.HungerPoints > stats.MaxHunger) stats.HungerPoints += stats.MaxHunger;
 
         HungerBar.fillAmount = stats.HungerPoints / stats.MaxHunger;
 
@@ -165,6 +168,8 @@ public class StatsController : MonoBehaviour
         }
 
         if (stats.CleanlinessPoints < stats.MinCleanliness) stats.CleanlinessPoints = stats.MinCleanliness;
+        if( stats.CleanlinessPoints > stats.MaxCleanliness) stats.CleanlinessPoints = stats.MaxCleanliness;
+
 
         CleanlinessBar.fillAmount = stats.CleanlinessPoints / stats.MaxCleanliness;
 
@@ -234,6 +239,8 @@ public class StatsController : MonoBehaviour
         }
 
         if (stats.HeatPoints < stats.MinHeat) stats.HeatPoints = stats.MinHeat;
+        if (stats.HeatPoints > stats.MaxHeat) stats.HeatPoints = stats.MaxHeat;
+
 
         HeatBar.fillAmount = stats.HeatPoints / stats.MaxHeat;
 
@@ -246,6 +253,7 @@ public class StatsController : MonoBehaviour
         stats.TirednessPoints -= stats.EnegryBurn * Time.deltaTime;
 
         if (stats.TirednessPoints < stats.MinTiredness) stats.TirednessPoints = stats.MinTiredness;
+        if (stats.TirednessPoints > stats.MaxTiredness) stats.TirednessPoints = stats.MaxTiredness;
 
         TirednessBar.fillAmount = stats.TirednessPoints / stats.MaxTiredness;
 
@@ -291,14 +299,14 @@ public class StatsController : MonoBehaviour
             HandleFaceState(FaceState.F4);
 
             PlayerController.chargeRate = 15 * 1.2f;
-            stats.MaxStamina = 120f;
+            stats.MaxStamina = 130f;
         }
         else
         {
             HandleFaceState(FaceState.F5);
 
             PlayerController.chargeRate = 15 * 1.4f;
-            stats.MaxStamina = 140f;
+            stats.MaxStamina = 150f;
         }
        
 
@@ -383,7 +391,8 @@ public class StatsController : MonoBehaviour
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("Thirst<20");
             stats.HealthPoints -= 0.5f * Time.deltaTime;
-           
+
+            stats.MS = stats.MS * 0.6f;
 
         }
         else if (thirstpercent < 40f)
@@ -391,7 +400,8 @@ public class StatsController : MonoBehaviour
             
             stats.MoodPoints -= .1f * Time.deltaTime;
             Debug.Log("Thirst<40");
-            
+
+            stats.MS = stats.MS * 0.8f;
         }
         else if (thirstpercent < 60f)
         {
@@ -402,11 +412,15 @@ public class StatsController : MonoBehaviour
         {
             stats.MoodPoints += .1f * Time.deltaTime;
             Debug.Log("ThirstThirst<80");
+
+            stats.MS = stats.MS * 1.2f;
         }
         else
         {
             stats.MoodPoints += .2f * Time.deltaTime;
             Debug.Log("Thirst80-100");
+
+            stats.MS = stats.MS * 1.4f;
 
         }
 
@@ -451,6 +465,7 @@ public class StatsController : MonoBehaviour
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("cleanliness<20");
             stats.HealthPoints -= 0.01f * Time.deltaTime;
+            
         }
         else if (cleanlinesspercent < 40f)
         {
@@ -484,12 +499,14 @@ public class StatsController : MonoBehaviour
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("heat<20");
             stats.HealthPoints -= 0.01f * Time.deltaTime;
-           
+            stats.MaxStamina = stats.MaxStamina * 0.8f;
         }
         else if (heatpercent < 20f)
         {
             Debug.Log("heat<40");
             stats.MoodPoints -= .1f * Time.deltaTime;
+
+            stats.MaxStamina = stats.MaxStamina * 0.9f;
         }
         else if (heatpercent < 20f)
         {
@@ -500,11 +517,17 @@ public class StatsController : MonoBehaviour
         {
             stats.MoodPoints += .1f * Time.deltaTime;
             Debug.Log("heat<80");
+
+            stats.MaxStamina = stats.MaxStamina * 1.2f;
+
         }
         else
         {
             stats.MoodPoints += .2f * Time.deltaTime;
             Debug.Log("heat80-100");
+
+            stats.MaxStamina = stats.MaxStamina * 1.4f;
+
 
         }
 
@@ -518,11 +541,13 @@ public class StatsController : MonoBehaviour
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("tiredness<20");
             stats.HealthPoints -= 0.01f * Time.deltaTime;
+            stats.InteractTime = stats.InteractTime * 0.8f;
         }
         else if (tirednesspercent < 40f)
         {
             stats.MoodPoints -= .1f * Time.deltaTime;
             Debug.Log("tiredness<40");
+            stats.InteractTime = stats.InteractTime * 0.9f;
         }
         else if (tirednesspercent < 60f)
         {
@@ -533,11 +558,13 @@ public class StatsController : MonoBehaviour
         {
             stats.MoodPoints += .1f * Time.deltaTime;
             Debug.Log("tiredness<80");
+            stats.InteractTime = stats.InteractTime * 1.2f;
         }
         else
         {
             stats.MoodPoints += .2f * Time.deltaTime;
             Debug.Log("tiredness80-100");
+            stats.InteractTime = stats.InteractTime * 1.4f;
         }
 
         HealthManager();

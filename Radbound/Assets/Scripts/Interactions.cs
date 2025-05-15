@@ -67,10 +67,10 @@ public class Interactions : MonoBehaviour
     }
     private IEnumerator Showering()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(stats.InteractTime);
         if (Input.GetKey(KeyCode.F))
         {
-            stats.CleanlinessPoints = stats.MaxCleanliness;
+            stats.CleanlinessPoints += stats.MaxCleanliness / 4;
             stats.HungerPoints -= 10f;
             stats.TirednessPoints -= 10f;
             
@@ -99,11 +99,46 @@ public class Interactions : MonoBehaviour
         Destroy(this);
     }
 
-    public void Rest()
+    public void UseToilet()
     {
-
+        if (Input.GetKey(KeyCode.F))
+        {
+            stats.CleanlinessPoints += stats.MaxCleanliness / 4;
+            stats.HungerPoints -= 10f;
+            stats.TirednessPoints -= 10f;
+        }
     }
 
+    public void UseSink()
+    {
+        if (Input.GetKey(KeyCode.F))
+        {
+            StartCoroutine(UsingSink());
+        }
 
-    
+    }
+    private IEnumerator UsingSink()
+    {
+        yield return new WaitForSeconds(stats.InteractTime);
+        if (Input.GetKey(KeyCode.F))
+        {
+            stats.CleanlinessPoints += stats.MaxCleanliness/4;
+            stats.HungerPoints -= 10f;
+            stats.TirednessPoints -= 10f;
+        }
+
+
+        
+
+
+
+
+        
+    }
+
+   
+
+
+
+
 }
