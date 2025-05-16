@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     //Axe Stuffs
     public GameObject AxeHolder;
     public bool canChop = false;
+    public GameObject tree;
 
     public Interactable lastInteract;
 
@@ -40,8 +41,19 @@ public class PlayerInteraction : MonoBehaviour
         CheckInteraction();
         if (Input.GetKeyDown(KeyCode.F) && currentInteractable != null)
         {
+            //if (currentInteractable.gameObject.tag == tree.gameObject.tag)
+            //{
+
+            //}
+            //else
+            //{
+            //    currentInteractable.Interact();
+            //    Debug.Log("Interacting");
+            //}
+
+
             currentInteractable.Interact();
-            Debug.Log("Interacting");
+               Debug.Log("Interacting");
         }
         if (Input.GetMouseButton(0) && AxeHolder.activeInHierarchy && currentInteractable != null)
         {

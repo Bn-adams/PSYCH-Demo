@@ -15,13 +15,17 @@ public class Interactions : MonoBehaviour
 
     //Axe Stuffs 
     public GameObject AxeHolder;
-   
+    
 
     // Start is called before the first frame update
     void Start()
     {
         stats = GameObject.Find("Player").GetComponent<PlayerStats>();
         SleepPanel.SetActive(false);
+
+
+        
+        
     }
 
     // Update is called once per frame
@@ -69,7 +73,7 @@ public class Interactions : MonoBehaviour
     }
     private IEnumerator Showering()
     {
-        yield return new WaitForSeconds(stats.InteractTime);
+        yield return new WaitForSeconds(4f);
         if (Input.GetKey(KeyCode.F))
         {
             stats.CleanlinessPoints += stats.MaxCleanliness / 4;
@@ -85,10 +89,19 @@ public class Interactions : MonoBehaviour
     public void Eat()
     {
         stats.HungerPoints += 40f;
+        stats.TirednessPoints -= 10f;
+        stats.CleanlinessPoints -= 10f;
+
+        
+    }
+
+    public void EatSmall()
+    {
+        stats.HungerPoints += 20f;
         stats.TirednessPoints -= 5f;
         stats.CleanlinessPoints -= 5f;
 
-        
+
     }
 
     public void Drink()
@@ -121,7 +134,7 @@ public class Interactions : MonoBehaviour
     }
     private IEnumerator UsingSink()
     {
-        yield return new WaitForSeconds(stats.InteractTime);
+        yield return new WaitForSeconds(2f);
         if (Input.GetKey(KeyCode.F))
         {
             stats.CleanlinessPoints += stats.MaxCleanliness/4;
@@ -143,10 +156,22 @@ public class Interactions : MonoBehaviour
         AxeHolder.SetActive(true);
 
     }
-    public void Chopping()
-    {
 
+    public void BurnWood()
+    {
+        if(stats.WoodCount > 0)
+        {
+            stats.WoodCount--;
+
+            stats.HeatPoints += 10f;
+        }
+        else
+        {
+            Debug.Log("No Wood");
+        }
+        
     }
+   
     
 
    

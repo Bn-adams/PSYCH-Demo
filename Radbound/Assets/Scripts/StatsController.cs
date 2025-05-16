@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
@@ -28,7 +29,9 @@ public class StatsController : MonoBehaviour
     public PlayerController PlayerController;
 
     private PlayerStats stats;
-    
+
+    public TMP_Text woodCounter;
+
 
 
 
@@ -53,6 +56,8 @@ public class StatsController : MonoBehaviour
         Face4.SetActive(false);
         Face5.SetActive(false);
 
+
+        stats.WoodCount = 0;
     }
 
    
@@ -73,7 +78,7 @@ public class StatsController : MonoBehaviour
 
     private void Update()
     {
-        
+        woodCounter.text = stats.WoodCount.ToString();
 
 
     }
@@ -126,7 +131,7 @@ public class StatsController : MonoBehaviour
         }
 
         if (stats.HungerPoints < stats.MinHunger) stats.HungerPoints = stats.MinHunger;
-        if(stats.HungerPoints > stats.MaxHunger) stats.HungerPoints += stats.MaxHunger;
+        if(stats.HungerPoints > stats.MaxHunger) stats.HungerPoints = stats.MaxHunger;
 
         HungerBar.fillAmount = stats.HungerPoints / stats.MaxHunger;
 

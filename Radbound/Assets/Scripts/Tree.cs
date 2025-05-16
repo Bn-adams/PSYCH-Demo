@@ -21,14 +21,14 @@ public class Tree : MonoBehaviour
 
         for (int i = 0; i < woodDropCount; i++)
         {
-            Vector3 dropPosition = transform.position + Random.insideUnitSphere * 1f;
-            dropPosition.y = transform.position.y;
+            Vector3 dropPosition = transform.position + Random.insideUnitSphere * 5f;
+            dropPosition.y = transform.position.y + 1;
             Instantiate(woodDropPrefab, dropPosition, Quaternion.identity);
         }
     }
 
-    private void OnDisable()
-    {
-        DropWood();
-    }
+    //private void OnDisable()
+    //{
+    //    DropWood();
+    //}
 }
