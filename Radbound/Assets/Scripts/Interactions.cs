@@ -13,6 +13,8 @@ public class Interactions : MonoBehaviour
     public PlayerController playerController;
     public float sleepCount = 5f;
 
+    //Axe Stuffs 
+    public GameObject AxeHolder;
    
 
     // Start is called before the first frame update
@@ -86,7 +88,7 @@ public class Interactions : MonoBehaviour
         stats.TirednessPoints -= 5f;
         stats.CleanlinessPoints -= 5f;
 
-        Destroy(this);
+        
     }
 
     public void Drink()
@@ -96,7 +98,7 @@ public class Interactions : MonoBehaviour
         stats.CleanlinessPoints -= 5f;
         stats.HeatPoints -= 5f;
 
-        Destroy(this);
+        
     }
 
     public void UseToilet()
@@ -135,6 +137,17 @@ public class Interactions : MonoBehaviour
 
         
     }
+
+    public void PickUpAxe()
+    {
+        AxeHolder.SetActive(true);
+
+    }
+    public void Chopping()
+    {
+
+    }
+    
 
    
 

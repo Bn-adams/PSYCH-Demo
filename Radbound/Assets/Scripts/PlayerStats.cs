@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
 
     private float interactTime = 3;
 
+    private float playerReach = 10;
+
     //Stamina Varibles
     private float maxStamina = 100;
 
@@ -77,6 +79,7 @@ public class PlayerStats : MonoBehaviour
     public float MS { get => mS; set => mS = value; }
     public int WoodCount { get => woodCount; set => woodCount = value; }
     public float InteractTime {get => interactTime; set => interactTime = value; }
+    public float PlayerReach { get => playerReach; set => playerReach = value; }
     
     //Stamina
     public float MaxStamina { get => maxStamina; set => maxStamina = value; }

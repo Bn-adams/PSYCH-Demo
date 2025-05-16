@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
     public float chargeRate;
     public Image StamBar;
     private Coroutine recharge;
+
+    //Axe Stuffs
+    public GameObject AxeHolder;
+    public Animator animator;
     
     
 
@@ -47,7 +51,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         stats = GameObject.Find("Player").GetComponent<PlayerStats>();
         stats.StaminaCount = stats.MaxStamina;
-        
+        //animator = GameObject.Find("AxeHolder").GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
@@ -59,6 +63,7 @@ public class PlayerController : MonoBehaviour
             SetMovement();
             Jump();
             FallCheck();
+            Chopping();
             //Debug.Log(isRecharging);
             //Debug.Log(isOutside);
         }
@@ -219,6 +224,40 @@ public class PlayerController : MonoBehaviour
         {
             isOutside = true;
         }
+    }
+
+    void Chopping()
+    {
+        
+
+        if ((AxeHolder.activeInHierarchy) && Input.GetMouseButton(0))
+        {
+            Debug.Log("Chopping");
+            animator.SetBool("IsChopping", true);
+
+           
+        }
+        else
+        {
+            animator.SetBool("IsChopping", false);
+        }
+
+
+        //RaycastHit hit;
+        //Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
+        //if (Physics.Raycast(ray, out hit, stats.PlayerReach))
+        //{
+        //    if (hit.collider.tag == "Tree") //Check looking at obj has tag
+        //    {
+
+        //    }
+
+
+        //}
+
+
+
     }
 }
 

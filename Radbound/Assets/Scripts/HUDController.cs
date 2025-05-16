@@ -14,16 +14,28 @@ public class HUDController : MonoBehaviour
     }
 
     [SerializeField] TMP_Text interactionText;
+    [SerializeField] TMP_Text ChopText;
 
     public void EnableInteractionText(string text)
     {
-        interactionText.text = text + " F";
+        interactionText.text = text;
         interactionText.gameObject.SetActive(true);
     }
 
     public void DisableInteractionText()
     {
         interactionText.gameObject.SetActive(false);
+    }
+
+    public void EnableChopText(string text)
+    {
+        ChopText.text = text;
+        interactionText.gameObject.SetActive(true);
+    }
+    
+    public void DisableChopText()
+    {
+        ChopText.gameObject.SetActive(false);
     }
 }
 
