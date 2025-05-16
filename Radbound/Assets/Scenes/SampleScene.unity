@@ -2226,7 +2226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5635150430148818531, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6272265136555208283, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2237,6 +2237,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
+--- !u!95 &136173383 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3790733893000414091, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
+  m_PrefabInstance: {fileID: 136173382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &138106171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55769,6 +55774,8 @@ MonoBehaviour:
   playerController: {fileID: 1013762267}
   sleepCount: 5
   AxeHolder: {fileID: 0}
+  canChop: 0
+  lastInteract: {fileID: 0}
 --- !u!1 &1018609905
 GameObject:
   m_ObjectHideFlags: 0
@@ -57277,7 +57284,7 @@ PrefabInstance:
     - target: {fileID: 5260895416334041527, guid: 85bb1e29e0e95d442bab8da99e846e35, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1740363327}
+      objectReference: {fileID: 136173383}
     - target: {fileID: 5260895416334041527, guid: 85bb1e29e0e95d442bab8da99e846e35, type: 3}
       propertyPath: AxeHolder
       value: 
@@ -74107,11 +74114,6 @@ Mesh:
 --- !u!1 &1740363325 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5635150430148818531, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
-  m_PrefabInstance: {fileID: 136173382}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1740363327 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3870905142301197453, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
   m_PrefabInstance: {fileID: 136173382}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1742427843

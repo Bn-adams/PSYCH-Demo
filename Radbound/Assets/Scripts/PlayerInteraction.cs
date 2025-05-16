@@ -17,6 +17,9 @@ public class PlayerInteraction : MonoBehaviour
 
     //Axe Stuffs
     public GameObject AxeHolder;
+    public bool canChop = false;
+
+    public Interactable lastInteract;
 
 
     private void Start()
@@ -40,7 +43,30 @@ public class PlayerInteraction : MonoBehaviour
             currentInteractable.Interact();
             Debug.Log("Interacting");
         }
+        if (Input.GetMouseButton(0) && AxeHolder.activeInHierarchy && currentInteractable != null)
+        {
+            Debug.Log("Chopping");
+            StartCoroutine(ChopWait());
+            //public Interactable lastInteract = currentInteractable;
+             
+        }
     }
+
+    IEnumerator ChopWait()
+    {
+        yield return new WaitForSeconds(2);
+
+        if (Input.GetMouseButton(0) && currentInteractable != null)
+        {
+            currentInteractable.Interact();
+            Debug.Log("Chopped");
+
+
+        }
+
+
+    }
+
 
     //void ChopChecker()
     //{
@@ -94,47 +120,47 @@ public class PlayerInteraction : MonoBehaviour
     }
 
 
-    //void CheckChop()
-    //{
-    //    RaycastHit hit;
-    //    Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-    //    //Camera.main.transform.forward
-    //    //if colliders with anything within player range
-    //    if (Physics.Raycast(ray, out hit, stats.PlayerReach))
-    //    {
-    //        if (hit.collider.tag == "Tree") //Check looking at obj has tag
-    //        {
-    //            Interactable newInteraction = hit.collider.GetComponent<Interactable>();
+    ////void CheckChop()
+    ////{
+    ////    RaycastHit hit;
+    ////    Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+    ////    Camera.main.transform.forward
+    ////    if colliders with anything within player range
+    ////    if (Physics.Raycast(ray, out hit, stats.PlayerReach))
+    ////    {
+    ////        if (hit.collider.tag == "Tree") //Check looking at obj has tag
+    ////        {
+    ////            Interactable newInteraction = hit.collider.GetComponent<Interactable>();
 
-    //            //if there is a currentinteractable and it is not the new intetactable
-    //            if (currentInteractable && newInteraction != currentInteractable)
-    //            {
+    ////            if there is a currentinteractable and it is not the new intetactable
+    ////            if (currentInteractable && newInteraction != currentInteractable)
+    ////            {
 
-    //                currentInteractable.DisableOutline();
-    //            }
+    ////                currentInteractable.DisableOutline();
+    ////            }
 
-    //            if (newInteraction.enabled)
-    //            {
-    //              
-    //                SetNewCurrentChopable(newInteraction);
-    //            }
-    //            else //if new iteractable is not enabled
-    //            {
-    //                DisableCurrentChopable();
-    //            }
-    //        }
-    //        else //if not interactable
-    //        {
-    //            DisableCurrentChopable();
-    //        }
-    //    }
-    //    else //if nothing in reach
-    //    {
-    //        DisableCurrentChopable();
-    //    }
+    ////            if (newInteraction.enabled)
+    ////            {
 
-    //    //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.red);
-    //}
+    ////                SetNewCurrentChopable(newInteraction);
+    ////            }
+    ////            else //if new iteractable is not enabled
+    ////            {
+    ////                DisableCurrentChopable();
+    ////            }
+    ////        }
+    ////        else //if not interactable
+    ////        {
+    ////            DisableCurrentChopable();
+    ////        }
+    ////    }
+    ////    else //if nothing in reach
+    ////    {
+    ////        DisableCurrentChopable();
+    ////    }
+
+    ////    Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.red);
+    ////}
 
 
 
