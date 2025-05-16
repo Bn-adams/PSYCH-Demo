@@ -4107,6 +4107,14 @@ PrefabInstance:
       value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 2287001102017895980, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
+      propertyPath: sensX
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287001102017895980, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
+      propertyPath: sensY
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287001102017895980, guid: 23e929a018669794a8d73e26746d68c8, type: 3}
       propertyPath: orientation
       value: 
       objectReference: {fileID: 1689549975}
