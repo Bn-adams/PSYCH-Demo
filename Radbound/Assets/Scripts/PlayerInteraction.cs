@@ -149,7 +149,7 @@ public class PlayerInteraction : MonoBehaviour
     void DisableCurrentInteractable()
     {
         HUDController.instance.DisableInteractionText();
-        HUDController.instance.DisableChopText();
+        //HUDController.instance.DisableChopText();
         if (currentInteractable)
         {
             currentInteractable.DisableOutline();

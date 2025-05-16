@@ -5506,7 +5506,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2844
+  m_VersionIndex: 2856
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5616,8 +5616,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineColor: {r: 0.19607843, g: 0.16470589, b: 0.77254903, a: 1}
+  outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -5633,7 +5633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd87aac0228baa4dbf12cc3ab779f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: To Sleep Press
+  message: To Sleep Press F
   onInteraction:
     m_PersistentCalls:
       m_Calls:
@@ -5664,3 +5664,4 @@ MonoBehaviour:
   SleepPanel: {fileID: 0}
   playerController: {fileID: 0}
   sleepCount: 5
+  AxeHolder: {fileID: 0}

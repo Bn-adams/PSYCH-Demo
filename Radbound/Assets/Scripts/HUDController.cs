@@ -27,16 +27,16 @@ public class HUDController : MonoBehaviour
         interactionText.gameObject.SetActive(false);
     }
 
-    public void EnableChopText(string text)
-    {
-        ChopText.text = text;
-        interactionText.gameObject.SetActive(true);
-    }
+    //public void EnableChopText(string text)
+    //{
+    //    ChopText.text = text;
+    //    interactionText.gameObject.SetActive(true);
+    //}
     
-    public void DisableChopText()
-    {
-        ChopText.gameObject.SetActive(false);
-    }
+    //public void DisableChopText()
+    //{
+    //    ChopText.gameObject.SetActive(false);
+    //}
 }
 
 
