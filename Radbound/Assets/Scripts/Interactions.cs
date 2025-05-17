@@ -89,7 +89,7 @@ public class Interactions : MonoBehaviour
     {
         stats.HungerPoints += 40f;
         stats.TirednessPoints -= 10f;
-        stats.CleanlinessPoints -= 10f;
+        stats.CleanlinessPoints -= 2f;
 
         
     }
@@ -98,7 +98,7 @@ public class Interactions : MonoBehaviour
     {
         stats.HungerPoints += 20f;
         stats.TirednessPoints -= 5f;
-        stats.CleanlinessPoints -= 10f;
+        stats.CleanlinessPoints -= 4f;
 
 
     }
@@ -107,7 +107,7 @@ public class Interactions : MonoBehaviour
     {
         stats.ThirstPoints += 40f;
         stats.TirednessPoints -= 5f;
-        stats.CleanlinessPoints -= 5f;
+        stats.CleanlinessPoints -= 2f;
         stats.HeatPoints -= 2f;
 
         
@@ -117,7 +117,7 @@ public class Interactions : MonoBehaviour
     {
         stats.ThirstPoints += 20f;
         stats.TirednessPoints -= 3f;
-        stats.CleanlinessPoints -= 6f;
+        stats.CleanlinessPoints -= 4f;
         stats.HeatPoints -= 1f;
 
 
@@ -211,7 +211,6 @@ public class Interactions : MonoBehaviour
     }
    
     
-
    
 
 

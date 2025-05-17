@@ -207,11 +207,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b50f3d5e168ea41887be1cc1b4b7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThirstState: 0
-  HungerState: 0
-  CleanlinessState: 0
-  HeatState: 0
-  TirednessState: 0
+  Thirst1: {fileID: 9186568532462191268}
+  Thirst2: {fileID: 251748857960914049}
+  Hunger1: {fileID: 3441521607921024261}
+  Hunger2: {fileID: 74860127755993184}
+  Cleanliness1: {fileID: 5828281782877167136}
+  Cleanliness2: {fileID: 561314185358823553}
+  Heat1: {fileID: 3566040346913289313}
+  Heat2: {fileID: 3122106436922363925}
+  Tiredness1: {fileID: 2427479642062388660}
+  Tiredness2: {fileID: 4217691656256365152}
+  Mood1: {fileID: 6376684148053229712}
+  Mood2: {fileID: 158595386376998432}
+  showArrows: 1
 --- !u!1 &180505595648218329
 GameObject:
   m_ObjectHideFlags: 0
@@ -4072,7 +4080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 31, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5181851034420671283

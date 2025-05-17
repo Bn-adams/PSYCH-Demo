@@ -512,6 +512,8 @@ public class StatsController : MonoBehaviour
             Thirst20Icon.gameObject.SetActive(false);
             Thirst40Icon.gameObject.SetActive(false);
             Thirst80icon.gameObject.SetActive(false);
+
+            stats.HealthPoints += .5f * Time.deltaTime;
         }
         else
         {
@@ -527,6 +529,7 @@ public class StatsController : MonoBehaviour
             Thirst40Icon.gameObject.SetActive(false);
             Thirst80icon.gameObject.SetActive(true);
 
+            stats.HealthPoints += 1f * Time.deltaTime;
         }
 
         ////Hunger Section
@@ -582,6 +585,8 @@ public class StatsController : MonoBehaviour
             Hunger20Icon.gameObject.SetActive(false);
             Hunger40Icon.gameObject.SetActive(false);
             Hunger80Icon.gameObject.SetActive(false);
+
+            stats.HealthPoints += .5f * Time.deltaTime;
         }
         else 
         {
@@ -594,6 +599,8 @@ public class StatsController : MonoBehaviour
             Hunger20Icon.gameObject.SetActive(false);
             Hunger40Icon.gameObject.SetActive(false);
             Hunger80Icon.gameObject.SetActive(true);
+
+            stats.HealthPoints += 1f * Time.deltaTime;
         }
 
         ////Cleanliness Section
@@ -651,6 +658,8 @@ public class StatsController : MonoBehaviour
             Cleanliness20Icon.gameObject.SetActive(false);
             Cleanlinesss40Icon.gameObject.SetActive(false);
             Cleanlinesss80Icon.gameObject.SetActive(false);
+
+            stats.HealthPoints += .25f * Time.deltaTime;
         }
         else
         {
@@ -663,6 +672,8 @@ public class StatsController : MonoBehaviour
             Cleanliness20Icon.gameObject.SetActive(false);
             Cleanlinesss40Icon.gameObject.SetActive(false);
             Cleanlinesss80Icon.gameObject.SetActive(true);
+
+            stats.HealthPoints += .5f * Time.deltaTime;
         }
 
 

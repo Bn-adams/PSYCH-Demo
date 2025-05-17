@@ -23,7 +23,7 @@ public class WaterTaskStarter : MonoBehaviour
         Toilet.SetActive(false);
         Shower.SetActive(false);
         Sink.SetActive(false);
-        TaskText.enabled = false;
+        
     }
 
     // Update is called once per frame
@@ -35,15 +35,16 @@ public class WaterTaskStarter : MonoBehaviour
             Toilet.SetActive(true);
             Shower.SetActive(true);
             Sink.SetActive(true);
-            TaskText.enabled = false;
+            TaskText.gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        TaskText.gameObject.SetActive(true);
         if (other.gameObject.CompareTag("Player"))
         {
-            TaskText.enabled = true;
+            
         }
     }
 }
