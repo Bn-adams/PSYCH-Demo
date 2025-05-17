@@ -42,8 +42,10 @@ public class PlayerController : MonoBehaviour
     //Axe Stuffs
     public GameObject AxeHolder;
     public Animator animator;
-    
-    
+
+    // Shower Task
+    public GameObject BucketHolder;
+    public GameObject Tap;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +75,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         outSideCheck();
+        Check4AxePickUP();
+        Check4BucketPickUP();
+        Check4PipeFixed();
     }
     private IEnumerator RechargeStamina()
     {
@@ -175,13 +180,16 @@ public class PlayerController : MonoBehaviour
             stats.StaminaCount -= stats.WalkCost * Time.deltaTime; // applies walk cost while moving every second
         }
 
-       
-        if (stats.StaminaCount < stats.MinStamina) stats.StaminaCount = 0;
 
-        StamBar.fillAmount = stats.StaminaCount / stats.MaxStamina;
+        if (stats.StaminaCount < stats.MinStamina) stats.StaminaCount = stats.MinStamina;
+        if (stats.StaminaCount > stats.MaxStamina) stats.StaminaCount = stats.MaxStamina;
+
+        
 
         if (recharge != null) StopCoroutine(recharge);
         recharge = StartCoroutine(RechargeStamina());
+
+        StamBar.fillAmount = stats.StaminaCount / stats.MaxStamina;
     }
     void CheckGrounded()
     {
@@ -228,20 +236,26 @@ public class PlayerController : MonoBehaviour
 
     void Chopping()
     {
-        
+
 
         if ((AxeHolder.activeInHierarchy) && Input.GetMouseButton(0))
         {
             Debug.Log("Chopping");
             animator.SetBool("IsChopping", true);
+            //stats.StaminaCount -= 0.5f;
 
-           
+
+
         }
         else
         {
             animator.SetBool("IsChopping", false);
         }
+            
 
+       
+
+        StamBar.fillAmount = stats.StaminaCount / stats.MaxStamina;
 
         //RaycastHit hit;
         //Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -258,6 +272,39 @@ public class PlayerController : MonoBehaviour
 
 
 
+    }
+
+    public void Check4AxePickUP()
+    {
+        if (stats.HasAxe)
+        {
+            AxeHolder.SetActive(true);
+        }
+        else
+        {
+            AxeHolder.SetActive(false);
+        }
+        
+    }
+
+    public void Check4BucketPickUP()
+    {
+        if (stats.HasBucket)
+        {
+            BucketHolder.SetActive(true);
+        }
+        else
+        {
+            BucketHolder.SetActive(false);
+        }
+    }
+
+    public void Check4PipeFixed()
+    {
+        if (stats.PipeFixed && stats.PipeFilled)
+        {
+            Tap.SetActive(true);
+        }
     }
 }
 

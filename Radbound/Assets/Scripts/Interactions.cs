@@ -13,8 +13,7 @@ public class Interactions : MonoBehaviour
     public PlayerController playerController;
     public float sleepCount = 5f;
 
-    //Axe Stuffs 
-    public GameObject AxeHolder;
+ 
     
 
     // Start is called before the first frame update
@@ -76,9 +75,9 @@ public class Interactions : MonoBehaviour
         yield return new WaitForSeconds(4f);
         if (Input.GetKey(KeyCode.F))
         {
-            stats.CleanlinessPoints += stats.MaxCleanliness / 4;
-            stats.HungerPoints -= 10f;
-            stats.TirednessPoints -= 10f;
+            stats.CleanlinessPoints += stats.MaxCleanliness / 2;
+            stats.HungerPoints -= 15f;
+            stats.TirednessPoints -= 20f;
             
         }
         
@@ -99,7 +98,7 @@ public class Interactions : MonoBehaviour
     {
         stats.HungerPoints += 20f;
         stats.TirednessPoints -= 5f;
-        stats.CleanlinessPoints -= 5f;
+        stats.CleanlinessPoints -= 10f;
 
 
     }
@@ -109,17 +108,27 @@ public class Interactions : MonoBehaviour
         stats.ThirstPoints += 40f;
         stats.TirednessPoints -= 5f;
         stats.CleanlinessPoints -= 5f;
-        stats.HeatPoints -= 5f;
+        stats.HeatPoints -= 2f;
 
         
+    }
+
+    public void DrinkSmall()
+    {
+        stats.ThirstPoints += 20f;
+        stats.TirednessPoints -= 3f;
+        stats.CleanlinessPoints -= 6f;
+        stats.HeatPoints -= 1f;
+
+
     }
 
     public void UseToilet()
     {
         if (Input.GetKey(KeyCode.F))
         {
-            stats.CleanlinessPoints += stats.MaxCleanliness / 4;
-            stats.HungerPoints -= 10f;
+            stats.CleanlinessPoints += stats.MaxCleanliness / 5;
+            stats.HungerPoints -= 15f;
             stats.TirednessPoints -= 10f;
         }
     }
@@ -153,8 +162,18 @@ public class Interactions : MonoBehaviour
 
     public void PickUpAxe()
     {
-        AxeHolder.SetActive(true);
+        stats.HasAxe = true;
 
+    }
+
+    public void PickUpBucket()
+    {
+        stats.HasBucket = true;
+    }
+
+    public void PickUpPipe()
+    {
+        stats.HasPipe = true;
     }
 
     public void BurnWood()
@@ -170,6 +189,25 @@ public class Interactions : MonoBehaviour
             Debug.Log("No Wood");
         }
         
+    }
+
+    public void FillPipe()
+    {
+        if (stats.HasBucket)
+        {
+            stats.HasBucket = false;
+            stats.PipeFilled = true;
+            Debug.Log("PipeFilled");
+        }
+        else
+        {
+            Debug.Log("No Bucket");
+        }
+    }
+    public void PipeRepair()
+    {
+        stats.PipeFixed = true;
+        Debug.Log("PipeFixed");
     }
    
     

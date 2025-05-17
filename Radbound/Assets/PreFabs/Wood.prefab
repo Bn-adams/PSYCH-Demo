@@ -24,7 +24,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7056768962550263447
 Transform:
   m_ObjectHideFlags: 0
@@ -184,7 +184,6 @@ MonoBehaviour:
   SleepPanel: {fileID: 0}
   playerController: {fileID: 0}
   sleepCount: 5
-  AxeHolder: {fileID: 0}
 --- !u!114 &741777054233381544
 MonoBehaviour:
   m_ObjectHideFlags: 0

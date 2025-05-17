@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -10,9 +11,21 @@ public class PlayerStats : MonoBehaviour
 
     private int woodCount = 0;
 
+    private bool hasAxe = false;
+
+
     private float interactTime = 3;
 
     private float playerReach = 10;
+
+    //Shower Task
+    private bool hasBucket = false;
+
+    private bool hasPipe = false;
+
+    private bool pipeFilled = false;
+
+    private bool pipeFixed = false;
 
     //Stamina Varibles
     private float maxStamina = 100;
@@ -78,9 +91,18 @@ public class PlayerStats : MonoBehaviour
     //Player
     public float MS { get => mS; set => mS = value; }
     public int WoodCount { get => woodCount; set => woodCount = value; }
+    public bool HasAxe { get => hasAxe; set => hasAxe = value; }
+  
     public float InteractTime {get => interactTime; set => interactTime = value; }
     public float PlayerReach { get => playerReach; set => playerReach = value; }
-    
+
+    //Shower Task
+    public bool HasBucket { get => hasBucket; set => hasBucket = value; }
+    public bool HasPipe { get => hasPipe; set => hasPipe = value; }
+    public bool PipeFilled { get => pipeFilled; set => pipeFilled = value; }
+    public bool PipeFixed { get => pipeFixed; set => pipeFixed = value; }
+
+
     //Stamina
     public float MaxStamina { get => maxStamina; set => maxStamina = value; }
     public float MinStamina { get => minStamina; set => minStamina = value; }

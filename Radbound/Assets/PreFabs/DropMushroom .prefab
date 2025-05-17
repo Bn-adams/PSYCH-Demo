@@ -107,7 +107,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3770951274554391749}
         m_TargetAssemblyTypeName: Interactions, Assembly-CSharp
-        m_MethodName: Eat
+        m_MethodName: EatSmall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -132,7 +132,6 @@ MonoBehaviour:
   SleepPanel: {fileID: 0}
   playerController: {fileID: 0}
   sleepCount: 5
-  AxeHolder: {fileID: 0}
 --- !u!1 &8313255573839110674
 GameObject:
   m_ObjectHideFlags: 0
