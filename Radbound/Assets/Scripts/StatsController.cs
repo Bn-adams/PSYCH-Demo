@@ -32,6 +32,38 @@ public class StatsController : MonoBehaviour
 
     public TMP_Text woodCounter;
 
+    //Screen Effects
+    public Image thirst20;
+    public Image thirst40;
+
+    public Image hunger20;
+    public Image hunger40;
+
+    public Image Cleanliness20;
+    public Image Cleanliness40;
+    
+    //Warning Icons
+    public Image Thirst20Icon;
+    public Image Thirst40Icon;
+    public Image Thirst80icon;
+
+    public Image Hunger20Icon;
+    public Image Hunger40Icon;
+    public Image Hunger80Icon;
+
+    public Image Cleanliness20Icon;
+    public Image Cleanlinesss40Icon;
+    public Image Cleanlinesss80Icon;
+
+    public Image Heat20Icon;
+    public Image Heat40Icon;
+    public Image Heat80Icon;
+
+    public Image Tiredness20Icon;
+    public Image Tiredness40Icon;
+    public Image Tiredness80Icon;
+
+
 
 
 
@@ -46,7 +78,7 @@ public class StatsController : MonoBehaviour
         stats.ThirstPoints = 50f;
         stats.HungerPoints = 50f;
         stats.CleanlinessPoints = 60f;
-        stats.HeatPoints = 20f;
+        stats.HeatPoints = 41f;
         stats.TirednessPoints = 80f;
         stats.MoodPoints = 20f;
 
@@ -58,6 +90,40 @@ public class StatsController : MonoBehaviour
 
 
         stats.WoodCount = 0;
+
+
+        //Setting Screen effects to null
+        thirst20.gameObject.SetActive(false);
+        thirst40.gameObject.SetActive(false);
+        
+
+        hunger20.gameObject.SetActive(false);
+        hunger40.gameObject.SetActive(false);
+
+        Cleanliness20.gameObject.SetActive(false);
+        Cleanliness20.gameObject.SetActive(false);
+
+        //Setting Warning Icons to Null
+        Thirst20Icon.gameObject.SetActive(false);
+        Thirst40Icon.gameObject.SetActive(false);
+        Thirst80icon.gameObject.SetActive(false);
+
+        Hunger20Icon.gameObject.SetActive(false);
+        Hunger40Icon.gameObject.SetActive(false);
+        Hunger80Icon.gameObject.SetActive(false);
+
+        Cleanliness20Icon.gameObject.SetActive(false);
+        Cleanlinesss40Icon.gameObject.SetActive(false);
+        Cleanlinesss80Icon.gameObject.SetActive(false);
+
+        Heat20Icon.gameObject.SetActive(false);
+        Heat40Icon.gameObject.SetActive(false);
+        Heat80Icon.gameObject.SetActive(false); 
+
+        Tiredness20Icon.gameObject.SetActive(false);
+        Tiredness40Icon.gameObject.SetActive(false);
+        Tiredness80Icon.gameObject.SetActive(false);
+
     }
 
    
@@ -395,10 +461,16 @@ public class StatsController : MonoBehaviour
         {
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("Thirst<20");
-            stats.HealthPoints -= 0.5f * Time.deltaTime;
+            stats.HealthPoints -= 2f * Time.deltaTime;
 
             stats.MS = stats.MS * 0.6f;
 
+            thirst20.gameObject.SetActive(true);
+            thirst40.gameObject.SetActive(false);
+
+            Thirst20Icon.gameObject.SetActive(true);
+            Thirst40Icon.gameObject.SetActive(false);
+            Thirst80icon.gameObject.SetActive(false);
         }
         else if (thirstpercent < 40f)
         {
@@ -407,11 +479,25 @@ public class StatsController : MonoBehaviour
             Debug.Log("Thirst<40");
 
             stats.MS = stats.MS * 0.8f;
+
+            thirst20.gameObject.SetActive(false);
+            thirst40.gameObject.SetActive(true);
+
+            Thirst20Icon.gameObject.SetActive(false);
+            Thirst40Icon.gameObject.SetActive(true);
+            Thirst80icon.gameObject.SetActive(false);
         }
         else if (thirstpercent < 60f)
         {
             stats.MoodPoints += 0.01f * Time.deltaTime;
             Debug.Log("Thirst<60");
+
+            thirst20.gameObject.SetActive(false);
+            thirst40.gameObject.SetActive(false);
+
+            Thirst20Icon.gameObject.SetActive(false);
+            Thirst40Icon.gameObject.SetActive(false);
+            Thirst80icon.gameObject.SetActive(false);
         }
         else if (thirstpercent < 80f)
         {
@@ -419,6 +505,13 @@ public class StatsController : MonoBehaviour
             Debug.Log("ThirstThirst<80");
 
             stats.MS = stats.MS * 1.2f;
+
+            thirst20.gameObject.SetActive(false);
+            thirst40.gameObject.SetActive(false);
+
+            Thirst20Icon.gameObject.SetActive(false);
+            Thirst40Icon.gameObject.SetActive(false);
+            Thirst80icon.gameObject.SetActive(false);
         }
         else
         {
@@ -426,6 +519,13 @@ public class StatsController : MonoBehaviour
             Debug.Log("Thirst80-100");
 
             stats.MS = stats.MS * 1.4f;
+
+            thirst20.gameObject.SetActive(false);
+            thirst40.gameObject.SetActive(false);
+
+            Thirst20Icon.gameObject.SetActive(false);
+            Thirst40Icon.gameObject.SetActive(false);
+            Thirst80icon.gameObject.SetActive(true);
 
         }
 
@@ -437,28 +537,63 @@ public class StatsController : MonoBehaviour
         {
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("Hunger<20");
-            stats.HealthPoints -= 0.2f * Time.deltaTime;
+            stats.HealthPoints -= 2f * Time.deltaTime;
+
+            hunger20.gameObject.SetActive(true);
+            hunger40.gameObject.SetActive(false);
+
+            Hunger20Icon.gameObject.SetActive(true);
+            Hunger40Icon.gameObject.SetActive(false);
+            Hunger80Icon.gameObject.SetActive(false);
         }
         else if (hungerpercent < 40f)
         {
             stats.MoodPoints -= .1f * Time.deltaTime;
             Debug.Log("Hunger<40");
+
+            hunger20.gameObject.SetActive(false);
+            hunger40.gameObject.SetActive(true);
+
+            Hunger20Icon.gameObject.SetActive(false);
+            Hunger40Icon.gameObject.SetActive(true);
+            Hunger80Icon.gameObject.SetActive(false);
         }
         else if (hungerpercent < 60f)
         {
             Debug.Log("Hunger<60");
             stats.MoodPoints += 0.01f * Time.deltaTime;
+
+            hunger20.gameObject.SetActive(false);
+            hunger40.gameObject.SetActive(false);
+
+            Hunger20Icon.gameObject.SetActive(false);
+            Hunger40Icon.gameObject.SetActive(false);
+            Hunger80Icon.gameObject.SetActive(false);
         }
         else if (hungerpercent < 80f)
         {
 
             stats.MoodPoints += .1f * Time.deltaTime;
             Debug.Log("Hunger<80");
+
+            hunger20.gameObject.SetActive(false);
+            hunger40.gameObject.SetActive(false);
+
+            Hunger20Icon.gameObject.SetActive(false);
+            Hunger40Icon.gameObject.SetActive(false);
+            Hunger80Icon.gameObject.SetActive(false);
         }
         else 
         {
             stats.MoodPoints += .2f * Time.deltaTime;
             Debug.Log("Hunger80-100");
+
+            hunger20.gameObject.SetActive(false);
+            hunger40.gameObject.SetActive(false);
+
+            Hunger20Icon.gameObject.SetActive(false);
+            Hunger40Icon.gameObject.SetActive(false);
+            Hunger80Icon.gameObject.SetActive(true);
         }
 
         ////Cleanliness Section
@@ -469,28 +604,65 @@ public class StatsController : MonoBehaviour
         {
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("cleanliness<20");
-            stats.HealthPoints -= 0.01f * Time.deltaTime;
-            
+            stats.HealthPoints -= 1f * Time.deltaTime;
+
+            Cleanliness20.gameObject.SetActive(true);
+            Cleanliness40.gameObject.SetActive(false);
+
+            Cleanliness20Icon.gameObject.SetActive(true);
+            Cleanlinesss40Icon.gameObject.SetActive(false);
+            Cleanlinesss80Icon.gameObject.SetActive(false);
+
+
         }
         else if (cleanlinesspercent < 40f)
         {
             stats.MoodPoints -= .1f * Time.deltaTime;
             Debug.Log("cleanliness<40");
+
+            Cleanliness20.gameObject.SetActive(false);
+            Cleanliness40.gameObject.SetActive(true);
+
+            Cleanliness20Icon.gameObject.SetActive(false);
+            Cleanlinesss40Icon.gameObject.SetActive(true);
+            Cleanlinesss80Icon.gameObject.SetActive(false);
+
         }
         else if (cleanlinesspercent < 60f)
         {
             stats.MoodPoints += 0.01f * Time.deltaTime;
             Debug.Log("cleanliness<60");
+
+            Cleanliness20.gameObject.SetActive(false);
+            Cleanliness40.gameObject.SetActive(false);
+
+            Cleanliness20Icon.gameObject.SetActive(false);
+            Cleanlinesss40Icon.gameObject.SetActive(false);
+            Cleanlinesss80Icon.gameObject.SetActive(false);
         }
         else if (cleanlinesspercent < 80f)
         {
             stats.MoodPoints += .1f * Time.deltaTime;
             Debug.Log("cleanliness<80");
+
+            Cleanliness20.gameObject.SetActive(false);
+            Cleanliness40.gameObject.SetActive(false);
+
+            Cleanliness20Icon.gameObject.SetActive(false);
+            Cleanlinesss40Icon.gameObject.SetActive(false);
+            Cleanlinesss80Icon.gameObject.SetActive(false);
         }
         else
         {
             stats.MoodPoints += .2f * Time.deltaTime;
             Debug.Log("cleanliness80-100");
+
+            Cleanliness20.gameObject.SetActive(false);
+            Cleanliness40.gameObject.SetActive(false);
+
+            Cleanliness20Icon.gameObject.SetActive(false);
+            Cleanlinesss40Icon.gameObject.SetActive(false);
+            Cleanlinesss80Icon.gameObject.SetActive(true);
         }
 
 
@@ -499,31 +671,49 @@ public class StatsController : MonoBehaviour
         ///
         float heatpercent = (stats.HeatPoints / stats.MaxHeat) * 100f;
 
-        if (heatpercent <20f)
+        if (heatpercent < 20f)
         {
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("heat<20");
-            stats.HealthPoints -= 0.01f * Time.deltaTime;
+            stats.HealthPoints -= .5f * Time.deltaTime;
+
             stats.MaxStamina = stats.MaxStamina * 0.8f;
+
+            Heat20Icon.enabled = true;
+            Heat40Icon.enabled = false;
+            Heat80Icon.enabled = false; 
+
         }
-        else if (heatpercent < 20f)
+        else if (heatpercent < 40f)
         {
             Debug.Log("heat<40");
             stats.MoodPoints -= .1f * Time.deltaTime;
 
             stats.MaxStamina = stats.MaxStamina * 0.9f;
+
+            Heat20Icon.gameObject.SetActive(false);
+            Heat40Icon.gameObject.SetActive(true);
+            Heat80Icon.gameObject.SetActive(false);
         }
-        else if (heatpercent < 20f)
+        else if (heatpercent < 60f)
         {
             stats.MoodPoints += 0.01f * Time.deltaTime;
             Debug.Log("heat<60");
+
+            Heat20Icon.gameObject.SetActive(false);
+            Heat40Icon.gameObject.SetActive(false);
+            Heat80Icon.gameObject.SetActive(false);
         }
-        else if (heatpercent < 20f)
+        else if (heatpercent < 80f)
         {
             stats.MoodPoints += .1f * Time.deltaTime;
             Debug.Log("heat<80");
 
             stats.MaxStamina = stats.MaxStamina * 1.2f;
+
+            Heat20Icon.gameObject.SetActive(false);
+            Heat40Icon.gameObject.SetActive(false);
+            Heat80Icon.gameObject.SetActive(false);
 
         }
         else
@@ -532,6 +722,10 @@ public class StatsController : MonoBehaviour
             Debug.Log("heat80-100");
 
             stats.MaxStamina = stats.MaxStamina * 1.4f;
+
+            Heat20Icon.gameObject.SetActive(false);
+            Heat40Icon.gameObject.SetActive(false);
+            Heat80Icon.gameObject.SetActive(true);
 
 
         }
@@ -545,31 +739,52 @@ public class StatsController : MonoBehaviour
         {
             stats.MoodPoints -= .2f * Time.deltaTime;
             Debug.Log("tiredness<20");
-            stats.HealthPoints -= 0.01f * Time.deltaTime;
+
+            stats.HealthPoints -= .5f * Time.deltaTime;
             stats.InteractTime = stats.InteractTime * 0.8f;
+
+            Tiredness20Icon.gameObject.SetActive(true);
+            Tiredness40Icon.gameObject.SetActive(false);
+            Tiredness80Icon.gameObject.SetActive(false);
         }
         else if (tirednesspercent < 40f)
         {
             stats.MoodPoints -= .1f * Time.deltaTime;
             Debug.Log("tiredness<40");
             stats.InteractTime = stats.InteractTime * 0.9f;
+
+            Tiredness20Icon.gameObject.SetActive(false);
+            Tiredness40Icon.gameObject.SetActive(true);
+            Tiredness80Icon.gameObject.SetActive(false);
         }
         else if (tirednesspercent < 60f)
         {
             stats.MoodPoints += 0.01f * Time.deltaTime;
             Debug.Log("tiredness<60");
+
+            Tiredness20Icon.gameObject.SetActive(false);
+            Tiredness40Icon.gameObject.SetActive(false);
+            Tiredness80Icon.gameObject.SetActive(false);
         }
         else if (tirednesspercent < 80f)
         {
             stats.MoodPoints += .1f * Time.deltaTime;
             Debug.Log("tiredness<80");
             stats.InteractTime = stats.InteractTime * 1.2f;
+
+            Tiredness20Icon.gameObject.SetActive(false);
+            Tiredness40Icon.gameObject.SetActive(false);
+            Tiredness80Icon.gameObject.SetActive(false);
         }
         else
         {
             stats.MoodPoints += .2f * Time.deltaTime;
             Debug.Log("tiredness80-100");
             stats.InteractTime = stats.InteractTime * 1.4f;
+
+            Tiredness20Icon.gameObject.SetActive(false);
+            Tiredness40Icon.gameObject.SetActive(false);
+            Tiredness80Icon.gameObject.SetActive(true);
         }
 
         HealthManager();

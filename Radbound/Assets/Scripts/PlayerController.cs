@@ -59,13 +59,14 @@ public class PlayerController : MonoBehaviour
     {
         if (rb != null)
         {
+            Chopping();
             CheckGrounded();
             GetMovement();
             IsRunning();
             SetMovement();
             Jump();
             FallCheck();
-            Chopping();
+            
             //Debug.Log(isRecharging);
             //Debug.Log(isOutside);
         }
