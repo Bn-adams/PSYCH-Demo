@@ -79,6 +79,11 @@ public class PlayerController : MonoBehaviour
         Check4AxePickUP();
         Check4BucketPickUP();
         Check4PipeFixed();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     private IEnumerator RechargeStamina()
     {
