@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd87aac0228baa4dbf12cc3ab779f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: To Chop Tree Press LMB
+  message: To Chop Tree Hold LMB             (Needs Axe)
   onInteraction:
     m_PersistentCalls:
       m_Calls:
@@ -133,7 +133,6 @@ MonoBehaviour:
   SleepPanel: {fileID: 0}
   playerController: {fileID: 0}
   sleepCount: 5
-  AxeHolder: {fileID: 0}
 --- !u!114 &6581542208471341248
 MonoBehaviour:
   m_ObjectHideFlags: 0

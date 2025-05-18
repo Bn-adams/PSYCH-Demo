@@ -77,7 +77,7 @@ public class StatsController : MonoBehaviour
         stats.HealthPoints = stats.MaxHealth;
         stats.ThirstPoints = 50f;
         stats.HungerPoints = 50f;
-        stats.CleanlinessPoints = 60f;
+        stats.CleanlinessPoints = 80f;
         stats.HeatPoints = 41f;
         stats.TirednessPoints = 80f;
         stats.MoodPoints = 20f;
@@ -338,6 +338,9 @@ public class StatsController : MonoBehaviour
 
 
         MoodBar.fillAmount = stats.MoodPoints / stats.MaxMood;
+
+        if(stats.MoodPoints < stats.MinMood) stats.MoodPoints = stats.MinMood;
+        if(stats.MoodPoints > stats.MaxMood) stats.MoodPoints= stats.MaxMood;
 
         //Mood Bar Icon states
 
@@ -690,10 +693,9 @@ public class StatsController : MonoBehaviour
 
             stats.MaxStamina = stats.MaxStamina * 0.8f;
 
-            Heat20Icon.enabled = true;
-            Heat40Icon.enabled = false;
-            Heat80Icon.enabled = false; 
-
+            Heat20Icon.gameObject.SetActive(true);
+            Heat40Icon.gameObject.SetActive(false);
+            Heat80Icon.gameObject.SetActive(false);
         }
         else if (heatpercent < 40f)
         {
