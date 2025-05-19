@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd87aac0228baa4dbf12cc3ab779f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: To Chop Mushroom Press LMB
+  message: To Chop Mushroom Hold LMB (Needs Axe)
   onInteraction:
     m_PersistentCalls:
       m_Calls:

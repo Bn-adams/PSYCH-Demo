@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4792571806221149692}
   - component: {fileID: 3193514958767203311}
-  - component: {fileID: 718127815564393334}
+  - component: {fileID: 7135422815554660973}
   m_Layer: 0
   m_Name: BrokenToilet
   m_TagString: Untagged
@@ -49,12 +49,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TaskText: {fileID: 0}
-  BrokenBathroom: {fileID: 4097804053392946716}
+  BrokenBathroom: {fileID: 0}
   Toilet: {fileID: 0}
   Shower: {fileID: 0}
   Sink: {fileID: 0}
   Tap: {fileID: 0}
---- !u!65 &718127815564393334
+--- !u!65 &7135422815554660973
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,12 +69,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.935791, y: 9.400425, z: 13.05426}
-  m_Center: {x: -111.298706, y: 4.2002144, z: 93.85289}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1572775292373024360
 PrefabInstance:
   m_ObjectHideFlags: 0

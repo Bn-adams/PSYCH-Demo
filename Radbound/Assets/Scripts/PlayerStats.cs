@@ -63,7 +63,7 @@ public class PlayerStats : MonoBehaviour
     private float minCleanliness = 0;
     private float cleanlinessPoints;
     private float inDoorCleanBurn = 0.01f;
-    private float outDoorCleanBurn = 0.5f;
+    private float outDoorCleanBurn = 0.3f;
 
 
     //Heat Varibles

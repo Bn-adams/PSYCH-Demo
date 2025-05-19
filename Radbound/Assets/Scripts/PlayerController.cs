@@ -59,13 +59,14 @@ public class PlayerController : MonoBehaviour
     {
         if (rb != null)
         {
+            Chopping();
             CheckGrounded();
             GetMovement();
             IsRunning();
             SetMovement();
             Jump();
             FallCheck();
-            Chopping();
+            
             //Debug.Log(isRecharging);
             //Debug.Log(isOutside);
         }
@@ -78,6 +79,11 @@ public class PlayerController : MonoBehaviour
         Check4AxePickUP();
         Check4BucketPickUP();
         Check4PipeFixed();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     private IEnumerator RechargeStamina()
     {
