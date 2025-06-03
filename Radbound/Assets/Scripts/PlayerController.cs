@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.UIElements;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private float HI;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
     private PlayerStats stats;
+    public GameObject SleepPanel;
 
     public bool isOutside;
     public bool isRecharging;
@@ -54,6 +56,7 @@ public class PlayerController : MonoBehaviour
         stats = GameObject.Find("Player").GetComponent<PlayerStats>();
         stats.StaminaCount = stats.MaxStamina;
         //animator = GameObject.Find("AxeHolder").GetComponent<Animator>();
+        SleepPanel.SetActive(false);
     }
     private void FixedUpdate()
     {
@@ -82,7 +85,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
+
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
         }
     }
     private IEnumerator RechargeStamina()

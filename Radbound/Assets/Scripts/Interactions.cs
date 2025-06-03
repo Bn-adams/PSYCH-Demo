@@ -9,7 +9,7 @@ public class Interactions : MonoBehaviour
     
 
     //Sleep Stuffs
-    public GameObject SleepPanel;
+    //public GameObject SleepPanel;
     public PlayerController playerController;
     public float sleepCount = 5f;
 
@@ -20,7 +20,7 @@ public class Interactions : MonoBehaviour
     void Start()
     {
         stats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        SleepPanel.SetActive(false);
+        //SleepPanel.SetActive(false);
 
 
         
@@ -34,7 +34,7 @@ public class Interactions : MonoBehaviour
     }
     public void Sleep()
     {
-        SleepPanel.SetActive(true);
+        playerController.SleepPanel.SetActive(true);
         playerController.isMovementAllowed = false;
 
         StartCoroutine(SleepThroughNight());
@@ -44,7 +44,7 @@ public class Interactions : MonoBehaviour
     private IEnumerator SleepThroughNight()
     {
         yield return new WaitForSeconds(sleepCount);
-        SleepPanel.SetActive(false);
+        playerController.SleepPanel.SetActive(false);
         playerController.isMovementAllowed = true;
 
         stats.TirednessPoints = stats.MaxTiredness;

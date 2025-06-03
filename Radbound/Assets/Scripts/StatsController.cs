@@ -27,6 +27,7 @@ public class StatsController : MonoBehaviour
 
 
     public PlayerController PlayerController;
+    
 
     private PlayerStats stats;
 
@@ -71,6 +72,7 @@ public class StatsController : MonoBehaviour
     void Start()
     {
         stats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        
 
 
         //sets all the stats to there max count
